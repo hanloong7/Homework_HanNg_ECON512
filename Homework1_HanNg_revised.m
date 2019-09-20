@@ -64,5 +64,23 @@ beta_hat
 SE
 
 % your approach assumes you have no NaNs. Consider doing:
+% import data as table
+dat = readtable('datahw1.csv','ReadVariableNames',false);
 
+% give variables names
+dat.Properties.VariableNames = {'firm_id','year','Export','RD','prod','cap'};
+% create deletion index to remove observations with NaNs
+del_ind = sum(isnan(dat{:,:}),2);
+% delete rows with NaNs 
+dat(del_ind>0,:) = [];
+
+% estimate linear model by matlab econometrics toolbox (it will
+% automatically ignore NaNs, but you should inspect data for it anyway)
+lm1 = fitlm(dat,'prod~Export+RD+cap');
+% display all the statistics of estimation 
+lm1
+
+% or display only coefficients and standard errors
+fprintf('beta \t\t SE \n');
+fprintf('%f \t %f \n', lm1.Coefficients.Estimate, lm1.Coefficients.SE);
 
