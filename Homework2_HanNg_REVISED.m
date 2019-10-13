@@ -7,6 +7,7 @@ Di = @(qi,pi,qj,pj) exp(qi - pi)/(1 + exp(qi - pi) + exp(qj - pj));
 D0 = @(qi,pi,qj,pj) 1/(1 + exp(qi - pi) + exp(qj - pj));
 
 %% Problem 1
+% GOOD, BUT ALSO INCLUDE DEMAND FOR OUTSIDE OPTION
 
 q = 2;
 p = 1;
@@ -16,6 +17,7 @@ DB = Di(q,p,q,p)
 
 %% Problem 2
 
+% USE BROYDEN FUNCTION DIRECTLY 
 DA = @(pA,pB) Di(2,pA,2,pB);
 DB = @(pB,pA) Di(2,pB,2,pA);
 
@@ -47,6 +49,7 @@ toc
 
 %% Problem 3
 
+% GOOD
 DA = @(pA,pB) Di(2,pA,2,pB);
 DB = @(pB,pA) Di(2,pB,2,pA);
 
@@ -86,6 +89,7 @@ for it = 1:maxit
 end
 
 %% Problem 4
+% GOOD
 
 tol = 1e-8;
 DA = @(pA,pB) Di(2,pA,2,pB);
@@ -113,6 +117,8 @@ end
 toc
 
 %% Problem 5
+
+% GOOD
 
 vA = 2;
 count = 0;
