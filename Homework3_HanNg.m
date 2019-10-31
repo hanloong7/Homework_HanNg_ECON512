@@ -1,4 +1,6 @@
 %% Econ 512 Problem Set 3 by Han Ng
+
+%%% you forgot to do time comparisons. You get Check!
 clear all;
 close;
 load hw3.mat;
@@ -10,13 +12,15 @@ init = randn(6,maxinit);
 for i = 1:maxinit
    
    %Q1 (Nelder Mead simplex method)
-   logL = @(beta) -sum(-exp(X*beta) + y.*(X*beta));
+   logL = @(beta) -sum(-exp(X*beta) + y.*(X*beta)); % NICELY DROPPING THE THIRD TERM
    betaQ1 = fminsearch(logL,init(:,i));
    
    %Q2 (BFGS)
    options2 = optimoptions('fminunc','Algorithm','quasi-newton',...
               'SpecifyObjectiveGradient', true, 'Display', 'iter')
-   betaQ2 = fminunc(@(beta) qfunc_ps3(X,y,beta),init(:,i),options2);
+             
+   betaQ2 = fminunc(@(beta) qfunc_ps3(X,y,beta),init(:,i),options2); % NICE GOING BY PROVIDING THE GRADIENT. 
+   % DO YOU MEAN qfunc_HOMEWORK3.m?
    
    %Q3 (NLS) Q4 (NM) 
    RSS = @(beta) sum((y-exp(X*beta)).^2);
@@ -31,7 +35,7 @@ for i = 1:maxinit
 end
 
 
-
+ %%% where are the time comparisons?
 hold on; 
 
 plot(b3(1,:))
