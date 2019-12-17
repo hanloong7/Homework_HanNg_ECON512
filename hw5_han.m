@@ -1,3 +1,5 @@
+% LOOKS GOOD. YOU GET A CHECK PLUS
+
 clear all;
 load hw5.mat;
 rng(1);
@@ -31,6 +33,7 @@ sTable = array2table(dis,'RowNames',rowNames ...
 
 %% Question 4
 
+% BETTER TO MAXIMIZE OVER CHOLESKY DECOMPOSITION
 hw5q4MC_run = @(parm) -hw5q4MC(parm(1),parm(2),parm(3),parm(4),parm(5),parm(6),data,100);
 hw5q4GQ_run = @(parm) -hw5q4GQ(parm(1),parm(2),parm(3),parm(4),parm(5),parm(6),data,20);
 x0 = [2.5,1.1,1,0.7,0,-0.5]';
